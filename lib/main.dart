@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -14,18 +15,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ValueListenableBuilder(
-        valueListenable: appValueNotifier.valueNotifier,
-        builder: (context, value, child) {
-          return Text(value.toString());
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          appValueNotifier.incrementNotifier();
-        },
-      ),
+    return MaterialApp(
+      home: Scaffold(
+          body: ValueListenableBuilder(
+            valueListenable: appValueNotifier.valueNotifier,
+            builder: (context, value, child) {
+              return Center(child: Text(value.toString()));
+            },
+          ),
+          floatingActionButton: ValueListenableBuilder(
+              valueListenable: appValueNotifier.valueNotifier,
+              builder: (context, value, child) {
+                return FloatingActionButton(
+                  onPressed: () {
+                    appValueNotifier.incrementNotifier();                    
+                  },
+                  child: Text(value.toString()),
+                );
+              })),
     );
   }
 }

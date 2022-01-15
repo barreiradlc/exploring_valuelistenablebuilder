@@ -5,5 +5,5 @@ class AppValueNotifier{
 
   void incrementNotifier() {
     valueNotifier.value++;
-  }  
+  } 
 }
